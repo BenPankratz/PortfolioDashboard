@@ -1,0 +1,140 @@
+/* PortfolioAnalyzer.css */
+/* General Style */
+.portfolio-analyzer {
+    padding: 10px;
+    background-color: #f9f9f9; /* Light grey background */
+}
+
+/* Main Title */
+.main-title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Sections and Headers */
+.input-section-container,
+.graphs-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputs{
+    flex: 1;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input Rows and Input Elements */
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.date-inputs {
+    display: flex;
+    flex-direction: row; /* Stack the date inputs vertically */
+    gap: 10px;
+    align-items: flex-start;
+}
+
+
+/* Buttons */
+/* Additional container for calculate button */
+.calculate-button-container {
+    display: flex;
+    justify-content: left; /* Centers the calculate button */
+    margin-top: 15px;
+}
+
+.add-button{
+    display: block; /* Make buttons block level for full width */
+    color: white;
+    font-size: 15px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+
+.remove-button {
+    background-color: transparent;
+    color: red;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0 5px;
+    font-size: 12px;
+    line-height: 1;
+    display: inline; /* Align inline with the text */
+}
+
+.calculate-button {
+    display: block; /* Make buttons block level for full width */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.add-button {
+    background-color: grey; /* Bootstrap secondary color */
+}
+
+.calculate-button {
+    background-color: black; /* Bootstrap primary color */
+}
+
+/* Results and Graphs */
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.graphs-container {
+    justify-content: space-around;
+}
+
+.chart-container {
+    padding: 20px;
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 500px; /* Adjust this value based on your desired height */
+    overflow: hidden; /* Ensures content doesn't exceed the container size */
+}
+
+.chart-header {
+    text-align: center; /* Center the header text */
+    margin-bottom: 10px; /* Add some space between header and chart */
+}
+
+.myPieChart{
+    width: 100% !important;
+    height: auto !important;
+} 
+
+.myBarChart {
+    width: 100%;
+    height: 400px; /* Adjusted for more appropriate default size */
+}
+
+/* Headers */
+h3 {
+    text-align: center;
+}
+
+/* Section Header Alignment */
+.section-header {
+    text-align: left;
+}

@@ -1,0 +1,155 @@
+<div className="calculate-button-container">
+    <button onClick={handleCalculate} className="calculate-button">Calculate</button>
+</div>
+
+<button onClick={() => removeInputPair(index)} className="remove-button">X</button>
+
+{results.breakdown && results.breakdown.length > 0 && (
+    <div>
+        <h2>Portfolio Value: ${results.total_value.toFixed(2)}</h2>
+        {results && Object.entries(results.individual_returns || {}).map(([ticker, return_pct]) => (
+            <p key={ticker}>{ticker}: {Number(return_pct).toFixed(3)}%</p>
+        ))}
+    </div>
+)}
+
+<h2 className="section-header">Select Timeframe</h2>
+                    <div className="date-inputs">
+                        <input
+                            type="date"
+                            className="start-date-input"
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                            placeholder="Start Date"
+                        />
+                        <input
+                            type="date"
+                            className="end-date-input"
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                            placeholder="End Date (optional)"
+                        />
+                    </div>
+
+
+
+                    const addInputPair = () => {
+                        // Ensure that both ticker and shares have valid inputs before adding
+                        if (currentInput.ticker && currentInput.shares && !isNaN(currentInput.shares)) {
+                            console.log("Adding to portfolio:", currentInput);
+                            setPortfolio([...portfolio, { ...currentInput }]);
+                            console.log("New portfolio state:", portfolio);
+                            setCurrentInput({ ticker: '', shares: '' }); // Reset input fields
+                            updatePieChartData(); // This will be an async call to update the chart
+                        } else {
+                            // Handle the error, e.g., show an alert or set an error state
+                            console.error('Invalid input for ticker or shares');
+                        }
+                        updatePortfolioValue();
+                    };
+    
+                    
+
+                    
+// const handleCalculate = async () => {
+    //     const tickers = inputs.map(input => input.ticker.trim());
+    //     const shares = inputs.map(input => parseFloat(input.allocation.trim()));
+        
+    //     if (!startDate) {
+    //         alert("Please enter a start date.");
+    //         return;
+    //     }
+    //     if (shares.some(isNaN)) {
+    //         alert("Shares must be numeric.");
+    //         return;
+    //     }
+    //     if (shares.some(share => share < 0)) {
+    //         alert("Shares must be a positive number");
+    //         return;
+    //     }
+
+    //     const payload = {
+    //         inputs: inputs,  // This is the array of input objects
+    //         start_date: startDate,
+    //         end_date: endDate || new Date().toISOString().split('T')[0]  // Use current date if endDate is not set
+    //     };
+    //     console.log('Sending payload:', payload);
+    //     try {
+    //         const response = await fetch('http://localhost:5000/api/analyze', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(payload),
+    //         });
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
+    //         const data = await response.json();
+    //         setResults(data);  // Set the results to state
+    //         setIsCalculated(true);
+    //         setPieChartData({
+    //             labels: data.map(data => data.ticker),
+    //             datasets: [
+    //                 {
+    //                     data: data.map(data => parseFloat(data.allocations)),
+    //                     backgroundColor: pieChartColors,
+    //                     // hoverBackgroundColor: pieChartColors.map(color => shadeColor(color, -10)) // Darken color on hover
+    //                 }
+    //             ]
+    //         });
+
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
+
+
+  return (
+    <div className="portfolio-analyzer">
+        <h1 className="main-title">Portfolio Analyzer</h1> {/* Main title for the website */}
+        <div className="input-section-container">
+            <div className="inputs">
+                <h2 className="section-header">Tickers and Allocations</h2>
+                {inputs.map((input, index) => (
+                    <div key={index} className="input-row">
+                        <input
+                            type="text"
+                            value={input.ticker}
+                            placeholder="Ticker"
+                            onChange={(e) => handleInputChange(index, 'ticker', e.target.value)}
+                        />
+                        <input
+                            type="number"
+                            value={input.allocation}
+                            placeholder="Allocation"
+                            onChange={(e) => handleInputChange(index, 'allocation', e.target.value)}
+                        />
+                        <button onClick={() => removeInputPair(index)} className="remove-button">X</button>
+                    </div>
+                ))}
+                <button onClick={addInputPair} className="add-button">Add More</button>
+            </div>
+            <div className="timeframe-section">
+                <h2 className="section-header">Select Timeframe</h2>
+                <div className="date-inputs">
+                    <input
+                        type="date"
+                        className="start-date-input"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        placeholder="Start Date"
+                    />
+                    <input
+                        type="date"
+                        className="end-date-input"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                        placeholder="End Date (optional)"
+                    />
+                </div>
+                <div className="calculate-button-container">
+                    <button onClick={handleCalculate} className="calculate-button">Calculate</button>
+                </div>
+            </div>
+        </div>
