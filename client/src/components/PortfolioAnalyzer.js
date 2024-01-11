@@ -4,7 +4,6 @@ import Plot from 'react-plotly.js';
 import './PortfolioAnalyzer.css';
 
 function PortfolioAnalyzer() {
-    // State to store input values and results
     const [startDate, setStartDate] = useState('');
     // const [endDate, setEndDate] = useState('');
     const [endDate, setEndDate] = useState(() => {
